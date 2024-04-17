@@ -12,7 +12,7 @@ from cryptography.hazmat.primitives.asymmetric import ec
 DEFAULT_EC_CURVE = ec.SECP384R1()
 EC_CURVE_NAMES = {
     256: "P-256",
-    384: "P-384",
+    # 384: "P-384",
     521: "P-512",
 }
 SIGNING_ALGORITHMS = {
@@ -106,19 +106,38 @@ def main():
     print(f"Key ID: `{kid}`")
 
     document = {
-        "id": did,
-        "assertionMethod": [
-            {
-                "id": f"{did}{kid}",
-                "type": "JsonWebKey2020",
-                "controller": did,
-                "publicKeyJwk": convert_key(
-                    public_key,
-                    kid=kid,
-                    alg=SIGNING_ALGORITHMS[public_key.key_size],
-                ),
-            }
+        "@context": [
+            "https://www.w3.org/ns/did/v1",
+            "https://w3id.org/security/suites/jws-2020/v1"
         ],
+        "id": did,
+        "verificationMethod": [
+        {
+            "id": f"{did}{kid}",
+            "type": "JSON-LD",
+            "controller": did,
+            "publicKeyJwk": {
+                "kty": "OKP",
+                "d": "8G9CGWIysVaxfXMD2p3zpiDlgmgeAze9YWqyRGgN16M",
+                "crv": "Ed25519",
+                "kid": "xeM-igDYHnTbUz1y10NWYvDEeIluyMKqYdp43CCd-P8",
+                "x": "CFWBbdlNC4VLPfD5NqceYRO53kWbFvsUyGEesdUlAVE"
+            }
+        }
+        ],
+        "authentication": [
+            f"{did}{kid}"
+        ],
+        "assertionMethod": [
+            f"{did}{kid}"
+        ],
+        "service": [
+            {
+            "id": f"{did}{kid}",
+            "type": "LinkedDomains",
+            "serviceEndpoint": "https://example.org/oidc/siop/"
+            }
+        ]
     }
 
     with open("did.json", "w") as f:
