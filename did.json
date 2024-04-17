@@ -1,0 +1,34 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/jws-2020/v1"
+  ],
+  "id": "did:web:YvonneChika.github.io:did-web-demo",
+  "verificationMethod": [
+    {
+      "id": "did:web:YvonneChika.github.io:did-web-demo#fdc1a99895eec06f84d2d3476bb46b5c53e8087939d1be739a1c3abe29133c1f",
+      "type": "JSON-LD",
+      "controller": "did:web:YvonneChika.github.io:did-web-demo",
+      "publicKeyJwk": {
+        "kty": "OKP",
+        "d": "8G9CGWIysVaxfXMD2p3zpiDlgmgeAze9YWqyRGgN16M",
+        "crv": "Ed25519",
+        "kid": "xeM-igDYHnTbUz1y10NWYvDEeIluyMKqYdp43CCd-P8",
+        "x": "CFWBbdlNC4VLPfD5NqceYRO53kWbFvsUyGEesdUlAVE"
+      }
+    }
+  ],
+  "authentication": [
+    "did:web:YvonneChika.github.io:did-web-demo#fdc1a99895eec06f84d2d3476bb46b5c53e8087939d1be739a1c3abe29133c1f"
+  ],
+  "assertionMethod": [
+    "did:web:YvonneChika.github.io:did-web-demo#fdc1a99895eec06f84d2d3476bb46b5c53e8087939d1be739a1c3abe29133c1f"
+  ],
+  "service": [
+    {
+      "id": "did:web:YvonneChika.github.io:did-web-demo#fdc1a99895eec06f84d2d3476bb46b5c53e8087939d1be739a1c3abe29133c1f",
+      "type": "LinkedDomains",
+      "serviceEndpoint": "https://example.org/oidc/siop/"
+    }
+  ]
+}
